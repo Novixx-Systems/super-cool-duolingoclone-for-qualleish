@@ -1,0 +1,206 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+:root {
+    --grey-color: rgb(228, 228, 228);
+    --darker-grey-color: rgb(189, 189, 189);
+    --text-color: rgb(60, 60, 60);
+    --border-radius: 15px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    user-select: none;
+    font-family: "Fredoka";
+    color: var(--text-color);
+    background-color: rgb(250, 250, 250);
+}
+
+.wrapper {
+    height: 60vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 5em;
+}
+
+h1 {
+    width: 100%;
+    font-weight: 600;
+    text-align: left;
+}
+
+.top__container {
+    margin-top: 50px;
+    width: 100%;
+    height: 250px;
+}
+
+.image_text__container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+img {
+    width: 150px;
+    display: block;
+}
+
+#original__text {
+    border: 2px solid var(--grey-color);
+    padding: 1em;
+    width: auto;
+    border-radius: var(--border-radius);
+    margin-left: 20px;
+    font-size: 1.2em;
+}
+
+span {
+    display: inline-block;
+    border-bottom: 2px dashed var(--darker-grey-color);
+    margin-right: 5px;
+}
+
+#destination__container {
+    padding: 0.5em 0;
+    height: 60px;
+    width: 100%;
+    border-top: 2px solid var(--grey-color);
+    border-bottom: 2px solid var(--grey-color);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#origin__container {
+    padding: 3em 0;
+    width: 100%;
+    /* border-top: 2px solid var(--grey-color);
+  border-bottom: 2px solid var(--grey-color); */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.word {
+    position: relative;
+    border: 1px solid var(--grey-color);
+    background-color: white;
+    margin: 0 0.2em;
+    padding: 0.5em 1em;
+    border-radius: var(--border-radius);
+    box-shadow: 0px 3px 0px 0px var(--grey-color);
+    transition: 0.2s transform ease-in-out;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+.word__container {
+    margin: 0 0.2em;
+    padding: 0.5em 1em;
+    border-radius: var(--border-radius);
+}
+
+    .word__container:empty {
+        background: var(--grey-color);
+    }
+
+.word:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    border-top: 2px solid var(--grey-color);
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2em 5em;
+}
+
+.skip_button,
+.check_button {
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0.8em 2.5em;
+    border-radius: var(--border-radius);
+    transition: 0s all ease-in-out;
+    cursor: pointer;
+}
+
+.skip_button {
+    color: var(--darker-grey-color);
+    border: 1px solid var(--grey-color);
+    background-color: white;
+    box-shadow: 0px 3px 0px 0px var(--grey-color);
+}
+
+    .skip_button:hover {
+        background-color: rgba(143, 157, 173, 0.2);
+    }
+
+.check_button {
+    color: white;
+    border: 1px solid #2ec748;
+    background-color: #2ec748;
+    box-shadow: 0px 3px 0px 0px #27aa3d;
+}
+
+    .check_button:hover { 
+        background-color: #33db4f;
+    }
+
+    .skip_button:active,
+    .check_button:active {
+        transform: translateY(2px);
+        box-shadow: none;
+    }
