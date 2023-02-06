@@ -1159,6 +1159,27 @@ const l21q3 = new AudioHearQuestion("Chong kegoy", "Your house");
 const l21q4 = new AudioHearQuestion("Chong ketoy", "My house");
 const l21q5 = new AudioHearQuestion("Di chong ke-Yio", "The dog's house");
 const l21q6 = new AudioHearQuestion("Chong ke-Karen", "Karen's house");
+// End Hear the Word 2
+// Animals 2
+const l22q1 = new MCVocabularyQuestion("Animals", ["Gung zange", "Gung zangen", "Gung", "Zange"], 1);
+const l22q2 = new MCVocabularyQuestion("Gung zange", ["Animals", "Animals are", "Animal", "Animals are not"], 1);
+const l22q3 = new MCVocabularyQuestion("Zung chungu", ["Alligator", "Cat", "Venus fly trap", "Alligators"], 1);
+const l22q4 = new MCVocabularyQuestion("Yia", ["Alligator", "Cat", "Venus fly trap", "Alligators"], 2);
+const l22q5 = new AssemblingTranslationQuestion("I have an alligator", ["Toy", "qui", "un", "zung", "chungu", "gung", "toy", "Goy"], "Toy qui un zung chungu.");
+const l22q6 = new MCVocabularyQuestion("Toy qui un zung chungu", ["I have an alligator", "I have a cat", "I have a Venus fly trap", "I have alligators"], 1);
+// End Animals 2
+// Simple Sentences 3
+const l23q1 = new MCVocabularyQuestion("Tone", ["Tono", "Tutu", "Toney", "Tonu"], 2);
+const l23q2 = new MCVocabularyQuestion("Tutu", ["Tone", "Tutu", "Toney", "Tonu"], 1, true);
+const l23q3 = new MCVocabularyQuestion("Vietnamese is a tonal language", ["Vi lag viet es un tutu vi lag", "Vi lag viet es un tonu vi lag", "Vi lag viet es un toney vi lag", "Vi lag viet es un tono vi lag"], 1);
+const l23q4 = new MCVocabularyQuestion("Qualleish is not a tonal language", ["Vi lag qualle es kyong un tutu vi lag", "Qualle es kyong un tutu vi lag", "Vi lag qualle es un tutu vi lag", "Chong ketoy es un tutu chong"], 1);
+const l23q5 = new AssemblingTranslationQuestion("You are me", ["Goy", "khong", "toy", "Toy", "goy"], "Goy khong toy.");
+const l23q6 = new AudioHearQuestion("Toy qui un chong", "I have a house");
+// End Simple Sentences 3
+// Describe a Person
+const l24q1 = new MCVocabularyQuestion("You are weird", ["Goy khong choange", "Goy khi choange", "Choange khong goy", "Isla la", 1]);
+const l24q2 = new AssemblingTranslationQuestion("Weird", ["Choange", "chong", "ketoy"], "Choange.");
+ 
 
 const BASICS = new LessonInformation("Basics", [l1q1, l1q2, l1q3, l1q4, l1q5, l1q6]);
 const BASICS_2 = new LessonInformation("Basics 2", [l2q1, l2q2, l2q3, l2q4, l2q5, l2q6]);
@@ -1181,13 +1202,15 @@ const USE_CONDITIONAL = new LessonInformation("Use conditional", [l18q1, l18q2, 
 const COMPUTER = new LessonInformation("Computer", [l19q1, l19q2, l19q3, l19q4, l19q5, l19q6]);
 const FAMILY = new LessonInformation("Family", [l20q1, l20q2, l20q3, l20q4, l20q5, l20q6]);
 const HEAR_THE_WORD_2 = new LessonInformation("Hear the word 2", [l21q1, l21q2, l21q3, l21q4, l21q5, l21q6]);
+const ANIMALS_2 = new LessonInformation("Animals 2", [l22q1, l22q2, l22q3, l22q4, l22q5, l22q6]);
+const SIMPLE_SENTENCES_3 = new LessonInformation("Simple sentences 3", [l23q1, l23q2, l23q3, l23q4, l23q5, l23q6]);
 
 
 var CURRENT_LESSON = new LessonInformation('NULL', []);
 
 const lessons = [BASICS, BASICS_2, INTRODUCE_YOURSELF, NUMBERS, USE_PLURALS, USE_PAST_TENSE, HEAR_THE_WORD, SIMPLE_SENTENCES, SIMPLE_SENTENCES_2,
     USE_REAL_WORLD_NAMES, GREETINGS, COUNTRIES, COUNTRIES_AND_LANGUAGES, WORK, ANIMALS, TALK_ABOUT_YOURSELF, FOOD, USE_CONDITIONAL,
-    COMPUTER, FAMILY, HEAR_THE_WORD_2];
+    COMPUTER, FAMILY, HEAR_THE_WORD_2, ANIMALS_2, SIMPLE_SENTENCES_3];
 ReactDOM.render(
     <AppDisplay />,
     document.getElementById('root')
