@@ -1,11 +1,166 @@
 // My conlang keeps changing names but I will keep it as qualleish now rip nopiosee ):
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom';
 import { nanoid } from 'nanoid';
 import './index.css';
 import { useCookies } from 'react-cookie';
+
+var SpeechRecognition = SpeechRecognition || window.webkitSpeechRecognition;
+var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList;
+var SpeechRecognitionEvent = SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
+
 var seedrandom = require('seedrandom');
 
+var speakDone = false;
+var speechCorrect = false;
+
+function testSpeech(phrase) {
+    
+    // To ensure case consistency while checking with the returned output text
+    phrase = phrase.toLowerCase();
+  
+    var grammar = "#JSGF V1.0; grammar phrase; public <phrase> = " + phrase +";";
+    var recognition = new SpeechRecognition();
+    var speechRecognitionList = new SpeechGrammarList();
+    speechRecognitionList.addFromString(grammar, 1);
+    recognition.grammars = speechRecognitionList;
+    recognition.lang = "en-GB";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+  
+    var speechResult = "";
+    recognition.start();
+    // Wait for the speech to be done
+  
+    recognition.onresult = function(event) {
+      // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
+      // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
+      // It has a getter so it can be accessed like an array
+      // The first [0] returns the SpeechRecognitionResult at position 0.
+      // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
+      // These also have getters so they can be accessed like arrays.
+      // The second [0] returns the SpeechRecognitionAlternative at position 0.
+      // We then return the transcript property of the SpeechRecognitionAlternative object 
+      speechResult = " " + event.results[0][0].transcript.toLowerCase().replaceAll(".", "").replace("?", "").replaceAll(",", "") + " ";
+      speechResult = speechResult.replace("22", "tutu");
+      speechResult = speechResult.replace("x", "cs");
+      speechResult = speechResult.replaceAll("ch", "x");
+      speechResult = speechResult.replaceAll("ku toy", "ketoy");
+      speechResult = speechResult.replaceAll("ku goy", "kegoy");
+      speechResult = speechResult.replaceAll("ku noy", "kenoy");
+      speechResult = speechResult.replaceAll("nky ", "ng ke");
+      speechResult = speechResult.replaceAll("nk hoy", "ng kegoy");
+      speechResult = speechResult.replaceAll("unk ahoy", "ong kegoy");
+      speechResult = speechResult.replaceAll("rua", "ruoua");
+      speechResult = speechResult.replaceAll("rover", "ruoua");
+      speechResult = speechResult.replaceAll("rover", "ruoua");
+      speechResult = speechResult.replaceAll(" ty ", " khi ");
+      speechResult = speechResult.replaceAll(" toi ", " toy ");
+      speechResult = speechResult.replaceAll(" xick ", " chik ");
+      speechResult = speechResult.replaceAll(" villa ", " vi lag ");
+      speechResult = speechResult.replaceAll(" fill a ", " vi lag ");
+      speechResult = speechResult.replaceAll(" feel a ", " vi lag ");
+      speechResult = speechResult.replaceAll(" koala ", " qualle ");
+      speechResult = speechResult.replaceAll(" toy con ", " toy khong ");
+      speechResult = speechResult.replaceAll(" goy con ", " goy khong ");
+      speechResult = speechResult.replaceAll(" noy con ", " noy khong ");
+      speechResult = speechResult.replaceAll(" as in ", " es un ");
+      speechResult = speechResult.replaceAll(" aquilizan ", " lag qualle es un ");
+      speechResult = speechResult.replaceAll(" asian ", " es un ");
+      speechResult = speechResult.replaceAll(" xo angie ", " choange ");
+      speechResult = speechResult.replaceAll(" xo ange ", " choange ");
+      speechResult = speechResult.replaceAll(" ash ", " es ");
+      speechResult = speechResult.replaceAll(" as ", " es ");
+      speechResult = speechResult.replaceAll(" tycoon ", " toy khong ");
+      speechResult = speechResult.replaceAll(" xunk toys ", " chong ketoy es ");
+      speechResult = speechResult.replaceAll(" ketoys ", " ketoy es ");
+      speechResult = speechResult.replaceAll(" ketoyrus ", " ketoy es ");
+      speechResult = speechResult.replaceAll(" can xallenge ", " khong choange ");
+      speechResult = speechResult.replaceAll(" a toy ", " ketoy ");
+      speechResult = speechResult.replaceAll(" it ice ", " ketoy ");
+      speechResult = speechResult.replaceAll(" hi cung ", " goy khong ");
+      speechResult = speechResult.replaceAll(" hi con ", " goy khong ");
+      speechResult = speechResult.replaceAll("nk goi ", "ng kegoy ");
+      speechResult = speechResult.replaceAll(" xunk toy ", " chong ketoy ");
+      speechResult = speechResult.replaceAll(" filler ", " vi lag ");
+      speechResult = speechResult.replaceAll(" taken me long ", " toy khong milan ");
+      speechResult = speechResult.replaceAll(" hi come to angie ", "goy khong choange ");
+      speechResult = speechResult.replaceAll(" angie ", "choange ");
+      speechResult = speechResult.replaceAll(" goi khong ", "goy khong ");
+      // Randomly replace the word "xung" with "chong" if the phrase is "xung ke" or "gung xung"
+      speechResult = speechResult.replaceAll(" xung ke", " chong ke");
+      speechResult = speechResult.replaceAll(" gung xung", " gung chong");
+      speechResult = speechResult.replaceAll(" xung ", " xang ");
+        speechResult = speechResult.replaceAll(" xunk ", " chong ");
+      speechResult = speechResult.trim();
+      if(speechResult === phrase || speechResult.replaceAll("x", "ch") === phrase || speechResult.replaceAll("ch", "x").replaceAll("xange", "choange") === phrase) {
+speechCorrect = true;
+      } else {
+speechCorrect = false;
+console.log("Expected: " + phrase + " Actual: " + speechResult);
+      }
+    }
+
+    recognition.onspeechend = function() {
+        console.log("SpeechRecognition.onspeechend");
+        speakDone = true;
+      recognition.stop();
+    }
+  
+    recognition.onerror = function(event) {
+    }
+    
+    recognition.onaudiostart = function(event) {
+        //Fired when the user agent has started to capture audio.
+        console.log("SpeechRecognition.onaudiostart");
+    }
+    
+    recognition.onaudioend = function(event) {
+        //Fired when the user agent has finished capturing audio.
+        console.log("SpeechRecognition.onaudioend");
+    }
+    
+    recognition.onend = function(event) {
+        //Fired when the speech recognition service has disconnected.
+        console.log("SpeechRecognition.onend");
+    }
+    
+    recognition.onnomatch = function(event) {
+        //Fired when the speech recognition service returns a final result with no significant recognition. This may involve some degree of recognition, which doesn"t meet or exceed the confidence threshold.
+        console.log("SpeechRecognition.onnomatch");
+    }
+    
+    recognition.onsoundstart = function(event) {
+        //Fired when any sound — recognisable speech or not — has been detected.
+        console.log("SpeechRecognition.onsoundstart");
+    }
+    
+    recognition.onsoundend = function(event) {
+        //Fired when any sound — recognisable speech or not — has stopped being detected.
+        console.log("SpeechRecognition.onsoundend");
+    }
+    
+    recognition.onspeechstart = function (event) {
+        //Fired when sound that is recognised by the speech recognition service as speech has been detected.
+        console.log("SpeechRecognition.onspeechstart");
+    }
+    recognition.onstart = function(event) {
+        //Fired when the speech recognition service has begun listening to incoming audio with intent to recognize grammars associated with the current SpeechRecognition.
+        console.log("SpeechRecognition.onstart");
+    }
+    // Wait 4 seconds before ending the speech recognition
+        return speechCorrect;
+
+}
+
+
+function waitm(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+      end = new Date().getTime();
+   }
+ }
 // Qualleish is a constructed language that you can learn using this app.
 
 
@@ -158,6 +313,111 @@ class LessonTopBar extends React.Component {
                 </div>
             </div>
         );
+    }
+}
+
+class SpeakingQuestion extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            userAnswer: '',
+            correctAnswer: props,
+            answerWasSubmitted: false
+        };
+
+        this.handleChange = this.handleChange.bind(this); // When input changed
+        this.handleSubmit = this.handleSubmit.bind(this); // When submit clicked
+    }
+
+    handleChange(event) {
+        this.setState({ userAnswer: event.target.value });
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+
+        this.setState({ answerWasSubmitted: true });
+    }
+
+    displayQuestion(handleNextQuestionMethod) {
+        const question = this.props.question;
+        const questionNumber = this.props.questionNumber;
+
+        return (
+            <div>
+                <div>
+                    <p>Pronounce {this.state.correctAnswer}</p>
+                </div>
+                <SpeakingAnswerFeedback
+                    userAnswer={this.state.userAnswer}
+                    correctAnswer={this.state.correctAnswer}
+                    answerWasSubmitted={this.state.answerWasSubmitted}
+                    handleNextQuestion={handleNextQuestionMethod} />
+            </div>
+        );
+    }
+}
+function wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+      end = new Date().getTime();
+   }
+ }function useDelayed_render(async_fun, deps=[]) {
+    const [output, setOutput] = useState();
+    useEffect(async () => setOutput(await async_fun()), deps);
+    return (output === undefined) ? null : output;
+}
+// Speaking Question Display
+class SpeakingQuestionDisplay extends React.Component {
+
+}
+// Speaking Question Feedback
+class SpeakingAnswerFeedback extends React.Component {
+    constructor(props) {
+        super(props);
+        this.correctAnswer = props.correctAnswer;
+        
+        this.handleClick = this.handleClick.bind(this); // When submit clicked
+    }
+
+    handleClick() {
+        const props = this.props;
+        const userAnswer =testSpeech(this.props.correctAnswer);
+        const answerWasSubmitted = true;
+        // Wait until speakDone is true
+const looperdooper = setInterval(function(){
+        let feedbackArea;
+        clearInterval(looperdooper);
+        if (userAnswer || speechCorrect)
+        {
+            speechCorrect = false;
+            // Make sure the audio is played
+                const audioElem = new Audio('audio_correct.mp3');
+                audioElem.play();
+                props.handleNextQuestion();
+            }
+            else {
+                
+                const audioElem = new Audio('audio_wrong.mp3');
+                audioElem.play();
+                alert("Incorrect");
+                props.handleNextQuestion();
+            }
+        }
+        , 5000);
+    }
+
+    handleSubmite(okok) {
+        
+    }
+
+    render() {    
+        
+    
+            return (
+                <button onClick={this.handleClick}>Speak and Check</button>);
     }
 }
 
@@ -630,22 +890,7 @@ class AudioHearQuestionDisplay extends React.Component {
 class EasyButtons extends React.Component {
     render() {
         return (<div>
-            <button onClick={() => document.getElementById('answ').value += 'ỹ'}>ỹ</button>
             <button onClick={() => document.getElementById('answ').value += 'á'}>á</button>
-            <button onClick={() => document.getElementById('answ').value += 'à'}>à</button>
-            <button onClick={() => document.getElementById('answ').value += 'ú'}>ú</button>
-            <button onClick={() => document.getElementById('answ').value += 'ù'}>ù</button>
-            <button onClick={() => document.getElementById('answ').value += 'ơ'}>ơ</button>
-            <button onClick={() => document.getElementById('answ').value += 'ô'}>ô</button>
-            <button onClick={() => document.getElementById('answ').value += 'õ'}>õ</button>
-            <button onClick={() => document.getElementById('answ').value += 'ó'}>ó</button>
-            <button onClick={() => document.getElementById('answ').value += 'ò'}>ò</button>
-            <button onClick={() => document.getElementById('answ').value += 'í'}>í</button>
-            <button onClick={() => document.getElementById('answ').value += 'ì'}>ì</button>
-            <button onClick={() => document.getElementById('answ').value += 'ê'}>ê</button>
-            <button onClick={() => document.getElementById('answ').value += 'é'}>é</button>
-            <button onClick={() => document.getElementById('answ').value += 'è'}>è</button>
-            <button onClick={() => document.getElementById('answ').value += 'ñ'}>ñ</button>
         </div>);
     }
 }
@@ -1177,9 +1422,13 @@ const l23q5 = new AssemblingTranslationQuestion("You are me", ["Goy", "khong", "
 const l23q6 = new AudioHearQuestion("Toy qui un chong", "I have a house");
 // End Simple Sentences 3
 // Describe a Person
-const l24q1 = new MCVocabularyQuestion("You are weird", ["Goy khong choange", "Goy khi choange", "Choange khong goy", "Isla la", 1]);
+const l24q1 = new MCVocabularyQuestion("You are weird", ["Goy khong choange", "Goy khi choange", "Choange khong goy", "Isla la"], 1);
 const l24q2 = new AssemblingTranslationQuestion("Weird", ["Choange", "chong", "ketoy"], "Choange.");
- 
+const l24q3 = new MCVocabularyQuestion("That person is weird", ["Xo chengnin es choange", "Xo chengnin choange", "Xo chengnin es chong", "Xo cheng es chong"], 1);
+const l24q4 = new SpeakingQuestion("Chong", "House");
+const l24q5 = new SpeakingQuestion("Chong ketoy", "My house");
+const l24q6 = new MCVocabularyQuestion("Chong kegoy es kyong un chengnin", ["Your house is a person", "Your house is not a person", "Your house is a weird house", "Your house is a weird person"], 2);
+// End Describe a Person
 
 const BASICS = new LessonInformation("Basics", [l1q1, l1q2, l1q3, l1q4, l1q5, l1q6]);
 const BASICS_2 = new LessonInformation("Basics 2", [l2q1, l2q2, l2q3, l2q4, l2q5, l2q6]);
@@ -1204,13 +1453,14 @@ const FAMILY = new LessonInformation("Family", [l20q1, l20q2, l20q3, l20q4, l20q
 const HEAR_THE_WORD_2 = new LessonInformation("Hear the word 2", [l21q1, l21q2, l21q3, l21q4, l21q5, l21q6]);
 const ANIMALS_2 = new LessonInformation("Animals 2", [l22q1, l22q2, l22q3, l22q4, l22q5, l22q6]);
 const SIMPLE_SENTENCES_3 = new LessonInformation("Simple sentences 3", [l23q1, l23q2, l23q3, l23q4, l23q5, l23q6]);
+const DESCRIBE_A_PERSON = new LessonInformation("Describe a person", [l24q1, l24q2, l24q3, l24q4, l24q5, l24q6]);
 
 
 var CURRENT_LESSON = new LessonInformation('NULL', []);
 
 const lessons = [BASICS, BASICS_2, INTRODUCE_YOURSELF, NUMBERS, USE_PLURALS, USE_PAST_TENSE, HEAR_THE_WORD, SIMPLE_SENTENCES, SIMPLE_SENTENCES_2,
     USE_REAL_WORLD_NAMES, GREETINGS, COUNTRIES, COUNTRIES_AND_LANGUAGES, WORK, ANIMALS, TALK_ABOUT_YOURSELF, FOOD, USE_CONDITIONAL,
-    COMPUTER, FAMILY, HEAR_THE_WORD_2, ANIMALS_2, SIMPLE_SENTENCES_3];
+    COMPUTER, FAMILY, HEAR_THE_WORD_2, ANIMALS_2, SIMPLE_SENTENCES_3, DESCRIBE_A_PERSON];
 ReactDOM.render(
     <AppDisplay />,
     document.getElementById('root')
