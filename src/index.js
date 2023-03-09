@@ -1430,13 +1430,30 @@ const l24q5 = new SpeakingQuestion("Chong ketoy", "My house");
 const l24q6 = new MCVocabularyQuestion("Chong kegoy es kyong un chengnin", ["Your house is a person", "Your house is not a person", "Your house is a weird house", "Your house is a weird person"], 2);
 // End Describe a Person
 // Simple Sentences 4
-const l25q1 = new MCVocabularyQuestion("Toy qui un chong", ["I have a house", "I have a dog", "I have a cat", "I have a dog house"], 1);
+const l25q1 = new MCVocabularyQuestion("Toy qui un chong", ["I have a house", "I have a dog", "I have a cat", "I have a dog house"], 1, true);
 const l25q2 = new SpeakingQuestion("Chong ketoy es chong kegoy", "My house is your house");
 const l25q3 = new MCVocabularyQuestion("Vietnamese is a tonal language", ["Vi lag viet es un tutu vi lag", "Vi lag viet es un tonu vi lag", "Vi lag viet es un toney vi lag", "Vi lag viet es un tono vi lag"], 1);
 const l25q4 = new MCVocabularyQuestion("Qualleish is not a tonal language", ["Vi lag qualle es kyong un tutu vi lag", "Qualle es kyong un tutu vi lag", "Vi lag qualle es un tutu vi lag", "Chong ketoy es un tutu chong"], 1);
 const l25q5 = new AssemblingTranslationQuestion("You are me", ["Goy", "khong", "toy", "Toy", "goy"], "Goy khong toy.");
 const l25q6 = new AssemblingTranslationQuestion("I have zero houses", ["Toy", "qui", "un", "chong", "chong", "gung", "toy", "anh", "un", "chong", "chong", "ketoy"], "Toy qui anh gung chong.");
+const l25q7 = new MCVocabularyQuestion("Toy qui anh gung chong", ["I have zero houses", "I have a house", "I have a dog", "I have a cat"], 1);
 // End Simple Sentences 4
+// Sexuality
+const l26q1 = new MCVocabularyQuestion("Straight", ["Seng bong", "Seng trung", "Seng gha", "Ruo xento"], 2);
+const l26q2 = new MCVocabularyQuestion("Bisexual", ["Seng bong", "Seng trung", "Seng gha", "Ruo xento"], 1);
+const l26q3 = new AssemblingTranslationQuestion("I am bisexual", ["Toy", "seng", "bong", "toy", "seng", "bong", "khong", "long"], "Toy khong seng bong.");
+const l26q4 = new MCVocabularyQuestion("Gay", ["Seng bong", "Seng trung", "Seng gha", "Ruo xento"], 3);
+const l26q5 = new MCVocabularyQuestion("Lesbian", ["Seng bong", "Seng trung", "Seng gha", "Ruo xento"], 3);
+const l26q6 = new MCVocabularyQuestion("Transgender", ["Seng bong", "Seng trung", "Seng gha", "Ruo xento"], 4);
+// End Sexuality
+// Use Past Tense 2
+const l27q1 = new MCVocabularyQuestion("I was a dog", ["Toy ruo un yio", "Toy es un chong", "Toy ruo un chong", "Toy un chong"], 1);
+const l27q2 = new MCVocabularyQuestion("I was a cat", ["Toy ruo un yia", "Toy es un chong", "Toy ruo un chong", "Toy un chong"], 1);
+const l27q3 = new MCVocabularyQuestion("I ate", ["Toy ruoua nung", "Toy ruoua xeet", "Toy ruoua nunge", "Toy ruoua eet"], 2);
+const l27q4 = new MCVocabularyQuestion("The man", ["Di chengnin mas", "Di chengnin", "Di chengnin masc", "Di cheng mas"], 1);
+const l27q5 = new SpeakingQuestion("Tutu vi lag", "Tonal language");
+const l27q6 = new MCVocabularyQuestion("I was a dog", ["Toy ruo un yio", "Toy es un chong", "Toy ruo un chong", "Toy un chong"], 1);
+// End Use Past Tense 2
 
 const BASICS = new LessonInformation("Basics", [l1q1, l1q2, l1q3, l1q4, l1q5, l1q6]);
 const BASICS_2 = new LessonInformation("Basics 2", [l2q1, l2q2, l2q3, l2q4, l2q5, l2q6]);
@@ -1462,14 +1479,16 @@ const HEAR_THE_WORD_2 = new LessonInformation("Hear the word 2", [l21q1, l21q2, 
 const ANIMALS_2 = new LessonInformation("Animals 2", [l22q1, l22q2, l22q3, l22q4, l22q5, l22q6]);
 const SIMPLE_SENTENCES_3 = new LessonInformation("Simple sentences 3", [l23q1, l23q2, l23q3, l23q4, l23q5, l23q6]);
 const DESCRIBE_A_PERSON = new LessonInformation("Describe a person", [l24q1, l24q2, l24q3, l24q4, l24q5, l24q6]);
-const SIMPLE_SENTENCES_4 = new LessonInformation("Simple sentences 4", [l25q1, l25q2, l25q3, l25q4, l25q5, l25q6]);
-
+const SIMPLE_SENTENCES_4 = new LessonInformation("Simple sentences 4", [l25q1, l25q2, l25q3, l25q4, l25q5, l25q6, l25q7]);
+const SEXUAL_ORIENTATION = new LessonInformation("Sexual Orientation", [l26q1, l26q2, l26q3, l26q4, l26q5, l26q6]);
+const USE_PAST_TENSE_2 = new LessonInformation("Use past tense 2", [l27q1, l27q2, l27q3, l27q4, l27q5, l27q6]);
 
 var CURRENT_LESSON = new LessonInformation('NULL', []);
 
 const lessons = [BASICS, BASICS_2, INTRODUCE_YOURSELF, NUMBERS, USE_PLURALS, USE_PAST_TENSE, HEAR_THE_WORD, SIMPLE_SENTENCES, SIMPLE_SENTENCES_2,
     USE_REAL_WORLD_NAMES, GREETINGS, COUNTRIES, COUNTRIES_AND_LANGUAGES, WORK, ANIMALS, TALK_ABOUT_YOURSELF, FOOD, USE_CONDITIONAL,
-    COMPUTER, FAMILY, HEAR_THE_WORD_2, ANIMALS_2, SIMPLE_SENTENCES_3, DESCRIBE_A_PERSON, SIMPLE_SENTENCES_4];
+    COMPUTER, FAMILY, HEAR_THE_WORD_2, ANIMALS_2, SIMPLE_SENTENCES_3, DESCRIBE_A_PERSON, SIMPLE_SENTENCES_4, SEXUAL_ORIENTATION,
+    USE_PAST_TENSE_2];
 ReactDOM.render(
     <AppDisplay />,
     document.getElementById('root')
