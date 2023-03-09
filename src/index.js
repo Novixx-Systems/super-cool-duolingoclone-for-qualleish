@@ -1434,9 +1434,8 @@ const l25q1 = new MCVocabularyQuestion("Toy qui un chong", ["I have a house", "I
 const l25q2 = new SpeakingQuestion("Chong ketoy es chong kegoy", "My house is your house");
 const l25q3 = new MCVocabularyQuestion("Vietnamese is a tonal language", ["Vi lag viet es un tutu vi lag", "Vi lag viet es un tonu vi lag", "Vi lag viet es un toney vi lag", "Vi lag viet es un tono vi lag"], 1);
 const l25q4 = new MCVocabularyQuestion("Qualleish is not a tonal language", ["Vi lag qualle es kyong un tutu vi lag", "Qualle es kyong un tutu vi lag", "Vi lag qualle es un tutu vi lag", "Chong ketoy es un tutu chong"], 1);
-const l25q5 = new AssemblingTranslationQuestion("You are me", ["Goy", "khong", "toy", "Toy", "goy"], "Goy khong toy.");
-const l25q6 = new AssemblingTranslationQuestion("I have zero houses", ["Toy", "qui", "un", "chong", "chong", "gung", "toy", "anh", "un", "chong", "chong", "ketoy"], "Toy qui anh gung chong.");
-const l25q7 = new MCVocabularyQuestion("Toy qui anh gung chong", ["I have zero houses", "I have a house", "I have a dog", "I have a cat"], 1);
+const l25q5 = new AssemblingTranslationQuestion("I have zero houses", ["Toy", "qui", "un", "chong", "chong", "gung", "toy", "anh", "un", "chong", "chong", "ketoy"], "Toy qui anh gung chong.");
+const l25q6 = new MCVocabularyQuestion("Toy qui anh gung chong", ["I have zero houses", "I have a house", "I have a dog", "I have a cat"], 1);
 // End Simple Sentences 4
 // Sexuality
 const l26q1 = new MCVocabularyQuestion("Straight", ["Seng bong", "Seng trung", "Seng gha", "Ruo xento"], 2);
@@ -1479,7 +1478,7 @@ const HEAR_THE_WORD_2 = new LessonInformation("Hear the word 2", [l21q1, l21q2, 
 const ANIMALS_2 = new LessonInformation("Animals 2", [l22q1, l22q2, l22q3, l22q4, l22q5, l22q6]);
 const SIMPLE_SENTENCES_3 = new LessonInformation("Simple sentences 3", [l23q1, l23q2, l23q3, l23q4, l23q5, l23q6]);
 const DESCRIBE_A_PERSON = new LessonInformation("Describe a person", [l24q1, l24q2, l24q3, l24q4, l24q5, l24q6]);
-const SIMPLE_SENTENCES_4 = new LessonInformation("Simple sentences 4", [l25q1, l25q2, l25q3, l25q4, l25q5, l25q6, l25q7]);
+const SIMPLE_SENTENCES_4 = new LessonInformation("Simple sentences 4", [l25q1, l25q2, l25q3, l25q4, l25q5, l25q6]);
 const SEXUAL_ORIENTATION = new LessonInformation("Sexual Orientation", [l26q1, l26q2, l26q3, l26q4, l26q5, l26q6]);
 const USE_PAST_TENSE_2 = new LessonInformation("Use past tense 2", [l27q1, l27q2, l27q3, l27q4, l27q5, l27q6]);
 
